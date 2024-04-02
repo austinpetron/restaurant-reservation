@@ -1,0 +1,56 @@
+.dashboard
+h1, h2 {
+    text-align: center;
+}
+
+.load-message {
+    color: white;
+    text-align: right;
+}
+
+/*Reservation Cards*/
+
+.reservations-list {
+    background-color: rgba(226, 26, 0, 0.893);
+    border: none;
+    filter: drop-shadow(10px 12px o.75rem #07434dc4);
+    padding: 10px;
+    margin-bottom: 40px;
+}
+
+.reservations-list h4 {
+    color: white
+}
+
+.reservations-list .card {
+    max-width: 20rem;
+}
+
+.reservations-list .card-header {
+    color: #106feb;
+}
+
+/* Button Toolbar Nav*/
+
+.btn-toolbar {
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+/*Table Cards*/
+
+.tables-list {
+    background-color:  rgba(226, 26, 0, 0.893);
+    filter: drop-shadow(10px 12px 0.75rem #d84949d2);
+    padding: 10px;
+}
+
+.tables-list h4 {
+    color: white
+}
+
+.tables-list .card {
+    border: none;
+    margin: 5px 3px;
+}
+

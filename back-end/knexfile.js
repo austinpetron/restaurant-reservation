@@ -3,9 +3,10 @@
  *
  * You will not need to make changes to this file.
  */
+const path = require("path");
 
 require('dotenv').config();
-const path = require("path");
+
 
 const {
   DATABASE_URL = "postgresql://postgres@localhost/postgres",
