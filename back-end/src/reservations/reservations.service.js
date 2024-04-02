@@ -34,10 +34,9 @@ function update(updatedReservation) {
 
 function updateStatus(reservation_id, status) {
     return knex("reservations")
-        .select("*")
         .where({ reservation_id })
-        .update({status}, "*")
-        .then(updatedRecords => updatedRecords[0]);
+        .update(status)
+        .then(() => read(reservation_id));
 }
 function search(mobile_number) {
     return knex("reservations")

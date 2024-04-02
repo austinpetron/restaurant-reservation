@@ -210,6 +210,7 @@ res.json({ data });
 async function updateStatus(req, res, next) {
   const validStatuses = ["booked", "seated", "finished", "cancelled"];
   const { status } = req.body.data
+  const { reservation_id } = res.locals.reservation
 
   if (status && !validStatuses.includes(status)) {
     next({
@@ -217,7 +218,8 @@ async function updateStatus(req, res, next) {
       message: `Invalid status: '${status}.' Status must be either 'booked', 'seated', 'finished,' or 'cancelled.' `
     });
   } else {
-    next();
+   const data = await service.updateStatus(reservation_id, status);
+   res.json({ data })
   }
 }
 
