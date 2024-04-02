@@ -42,21 +42,6 @@ function hasData(req, res, next) {
   next({ status: 400, message: "Body must have data property"});
 };
 
-function hasValidProperties(req, res, next) { 
-  const { data = {} } = req.body;
-
-  const invalidFields = Object.keys(data).filter(
-    (field) => !VALID_PROPERTIES.includes(field)
-  );
-
-  if (invalidFields.length) {
-    return next({
-      status: 400,
-      message: `Invalid field(s): ${invalidFields.join(", ")}`,
-    });
-  }
-  next();
-} 
 
 //middleware for validationg properties 
 function hasProperties(...properties) {
@@ -214,35 +199,31 @@ function read(req, res) {
 
 //Update
 async function updateReservation(req, res) {
- const { reservation_id } = res.locals.reservation;
- const updatedReservation = {
+const updatedReservation = {
   ...req.body.data,
-  reservation_id,
- };
- res.status(200).json({ data: await service.update(reservation_id, updatedReservation) });
+  reservation_id: res.locals.reservation.reservation_id,
+}
+const data = await service.update(updatedReservation);
+res.json({ data });
 }
 
 async function updateStatus(req, res, next) {
-  const { reservation_id } = req.params;
-  const { status } = req.body.data;
+  const validStatuses = ["booked", "seated", "finished", "cancelled"];
+  const { status } = req.body.data
 
-  // Ensure status is one of "booked", "seated", or "finished"
-  if (!["booked", "seated", "finished"].includes(status)) {
-    return next({
+  if (status && !validStatuses.includes(status)) {
+    next({
       status: 400,
-      message: `Invalid status: ${status}. Status must be one of "booked", "seated", or "finished".`,
+      message: `Invalid status: '${status}.' Status must be either 'booked', 'seated', 'finished,' or 'cancelled.' `
     });
+  } else {
+    next();
   }
-
-  const updatedReservation = await service.updateStatus(reservation_id, status);
-
-  res.status(200).json({ data: updatedReservation });
 }
 
 module.exports = {
   create: [ 
     hasData, 
-    hasValidProperties, 
     hasProperties("first_name", "last_name", "mobile_number", "reservation_date", "reservation_time", "people"), 
     hasValidDate,
     peopleIsNumber,
@@ -262,7 +243,6 @@ module.exports = {
 
   update: [
     hasData,
-    hasValidProperties,
     hasProperties("first_name", "last_name", "mobile_number", "reservation_date", "reservation_time", "people"),
     hasValidDate,
     peopleIsNumber,
