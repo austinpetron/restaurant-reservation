@@ -1,5 +1,6 @@
 import React from "react";
 import CancelButton from "./CancelButton";
+import "./ReservationCard.css"
 
 function ReservationCard({
     reservation_id,

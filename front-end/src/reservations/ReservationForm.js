@@ -5,7 +5,7 @@ function ReservationForm({ reservation, handleSubmit, handleChange }) {
     const history = useHistory();
 
     return (
-        <form onSubmit={{handleSubmit}}>
+        <form onSubmit={handleSubmit}>
             <div className="mb-3">
                 <div className="form-group">
                     <label htmlFor="first_name" className="form-label">First Name</label>

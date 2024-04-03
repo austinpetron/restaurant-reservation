@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import {createReservation } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
 import ReservationForm from "./ReservationForm";
+import "./CreateReservation.css";
 
 function CreateReservation() {
 const history = useHistory();
@@ -26,7 +27,7 @@ const [error, setError] = useState(null);
     
     const abortController = new AbortController();
     createReservation(reservation, abortController.signal)
-    .then((newReservation) => history.pushState(`/dashboard?date=${newReservation.reservation_date.slice(0,10)}`))
+    .then((newReservation) => history.push(`/dashboard?date=${newReservation.reservation_date.slice(0,10)}`))
     .catch((error) => setError(error));
 
     return () => abortController.abort();

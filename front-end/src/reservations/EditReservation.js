@@ -6,35 +6,47 @@ import ErrorAlert from "../layout/ErrorAlert";
 
 function EditReservation() {
     const history = useHistory();
-    const reservation_id = useParams().reservation_id;
+    const { reservation_id } = useParams();
 
     const [error, setError] = useState(null);
-    const [reservation, setReservation] = useState("");
+    const [reservation, setReservation] = useState({});
 
     useEffect(() => {
+        const abortController = new AbortController();
+
         async function loadReservation() {
-            const response = await readReservation(reservation_id);
-            setReservation(response);
+            try {
+                const response = await readReservation(reservation_id, abortController.signal);
+                setReservation(response);
+            } catch (error) {
+                setError(error);
+            }
         }
+
         loadReservation();
-        
+
+        return () => {
+            abortController.abort();
+        };
     }, [reservation_id]);
 
     const handleChange = ({ target }) => {
         setReservation({ ...reservation, [target.name]: target.value });
-    }
+    };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-    const abortController = new AbortController();
-        updateReservation(reservation, abortController.signal)
-        //Slice used as API returns full date/time string
-        .then(() => history.push(`/dashboard?date=${reservation.reservation_date.slice(0,10)}`))
-        .catch((error) => setError(error));
-
-        return () => abortController.abort();
-    }
+        const abortController = new AbortController();
+        try {
+            await updateReservation(reservation, abortController.signal);
+            history.push(`/dashboard?date=${reservation.reservation_date.slice(0, 10)}`);
+        } catch (error) {
+            setError(error);
+        } finally {
+            abortController.abort();
+        }
+    };
 
     return (
         <main>

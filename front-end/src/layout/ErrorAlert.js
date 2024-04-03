@@ -23,12 +23,11 @@ function ErrorAlert({ error, setError }) {
           aria-label="Close"
           onClick={() => setError(false)}
         >
-        <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true">&times;</span>
         </button>
       </div>
     )
-  );
+  ) || null; // Return null if error is falsy
 }
-
 
 export default ErrorAlert;
