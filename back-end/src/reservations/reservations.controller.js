@@ -155,7 +155,7 @@ function hasDefaultBookedStatus(req, res, next) {
 function isValidReservationStatus(req, res, next) {
   const { status } = req.body.data || {};
 
-  if (!["booked", "seated", "finished"].includes(status)) {
+  if (!["booked", "seated", "finished", "cancelled"].includes(status)) {
     return next({
       status: 400,
       message: `Invalid status: ${status}. Status must be one of "booked", "seated", or "finished".`,
