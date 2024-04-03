@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReservationList from "../reservations/ReservationList";
 import ErrorAlert from "../layout/ErrorAlert";
 import { listReservations } from "../utils/api";
-
+import "./search.css";
 
 function Search() {
   const [error, setError] = useState(null);

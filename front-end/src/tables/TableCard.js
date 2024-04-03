@@ -1,6 +1,6 @@
 import React from "react";
 import { removeReservation } from "../utils/api";
-//import "./TableCard.css";
+import "./tables.css";
 
 function TableCard({
   table_id,

@@ -3,8 +3,10 @@ import { listReservations, listTables } from "../utils/api";
 import TablesList from "../tables/TablesList";
 import NavButtons from "./NavButtons";
 import ErrorAlert from "../layout/ErrorAlert";
-import "./Dashboard.css";
 import ReservationsList from "../reservations/ReservationList";
+import "./Dashboard.css";
+
+
 /**
  * Defines the dashboard page.
  * @param date
