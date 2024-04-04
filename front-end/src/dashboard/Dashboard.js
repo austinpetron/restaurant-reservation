@@ -64,7 +64,7 @@ function Dashboard({ date }) {
         <ReservationsList
           reservations={reservations}
           setReservationsError={setReservationsError}
-          loadreservationsAndTables={loadReservationsAndTables}
+          loadReservationsAndTables={loadReservationsAndTables}
         />
       </div>
 
