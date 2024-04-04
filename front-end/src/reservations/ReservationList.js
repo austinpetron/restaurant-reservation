@@ -13,7 +13,7 @@ function ReservationsList({ reservations, setReservationsError, loadReservations
                         last_name={reservation.last_name}
                         mobile_number={reservation.mobile_number}
                         reservation_date={reservation.reservation_date}
-                        reservation_time={reservation.time.slice(0,5)}
+                        reservation_time={reservation.time ? reservation.time.slice(0,5) : ''}
                         people={reservation.people}
                         status={reservation.status}
                         setReservationsError={setReservationsError}
