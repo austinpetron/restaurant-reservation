@@ -86,7 +86,7 @@ function Seats() {
           </button>
           <button
             type="button"
-            className="btn btn-secondary btn-lg"
+            className="btn btn-danger btn-lg"
             onClick={() => history.go(-1)}>
               Cancel
           </button>

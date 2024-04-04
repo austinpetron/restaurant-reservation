@@ -60,7 +60,7 @@ function Dashboard({ date }) {
       <ErrorAlert error={reservationsError} setError={setReservationsError} />
       
       <div className="reservations-list">
-        <h3 className="mb-2">Reservations for {date}</h3>
+        <h3 className="mb-2 text-center">Reservations for {date}</h3>
         <ReservationsList
           reservations={reservations}
           setReservationsError={setReservationsError}
@@ -74,7 +74,7 @@ function Dashboard({ date }) {
 
       <div className="tables-list">
         <div className="d-md-flex mb-3">
-          <h3 className="mb-0">Tables</h3>
+          <h3 className="mb-2 text-center">Tables</h3>
         </div>
         {!table && <h4 className="load-message">Loading...</h4>}
         <ErrorAlert error={tablesError} setError={setTablesError} />

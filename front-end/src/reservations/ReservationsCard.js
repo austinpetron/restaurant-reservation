@@ -18,7 +18,7 @@ function ReservationCard({
     return (
         <div className="card h-100 w-100 mb-3">
             <h3 className="card-header d-flex justify-content-between align-items-center">
-                {last_name}, {first_name}
+                {first_name} {last_name}
                 {status === "booked" && <a
                     type="button"
                     className="btn btn-primary"
@@ -38,11 +38,11 @@ function ReservationCard({
                 id="resCardFooter">
                     {status === "booked" && 
                         <a
-                            className="btn btn-secondary"
+                            className="btn btn-primary"
                             id="seatButton"
                             href={`/reservations/${reservation_id}/seat`}
                             role="button">
-                            seat
+                            Seat
                         </a>}
 
                 <h5>
