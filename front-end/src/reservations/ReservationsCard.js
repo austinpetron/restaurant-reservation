@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"
 import CancelButton from "./CancelButton";
 import "./ReservationCard.css"
 
@@ -19,12 +20,12 @@ function ReservationCard({
         <div className="card h-100 w-100 mb-3">
             <h3 className="card-header d-flex justify-content-between align-items-center">
                 {first_name} {last_name}
-                {status === "booked" && <a
+                {status === "booked" && <Link
                     type="button"
                     className="btn btn-primary"
-                    href={`/reservations/${reservation_id}/edit`}>
+                    to={`/reservations/${reservation_id}/edit`}>
                         Edit
-                    </a> }
+                    </Link> }
             </h3>
 
             <div className="card-body">
@@ -37,13 +38,13 @@ function ReservationCard({
                 className="card-footer border-secondary text-secondary"
                 id="resCardFooter">
                     {status === "booked" && 
-                        <a
+                        <Link
                             className="btn btn-primary"
                             id="seatButton"
-                            href={`/reservations/${reservation_id}/seat`}
+                            to={`/reservations/${reservation_id}/seat`}
                             role="button">
                             Seat
-                        </a>}
+                        </Link>}
 
                 <h5>
                     <span 
