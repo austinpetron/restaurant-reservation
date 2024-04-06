@@ -35,7 +35,7 @@ function ReservationForm({ reservation, handleSubmit, handleChange }) {
             <div className="mb-3">
                 <label htmlFor="mobile_number" className="form-label">Mobile Number</label>
                 <input
-                type="tel"
+                type="number"
                 name="mobile_number"
                 id="mobile_number"
                 className="form-control"
